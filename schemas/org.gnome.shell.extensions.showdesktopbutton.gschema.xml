@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="show-desktop-button">
+<schemalist gettext-domain="show-desktop-applet">
   
-  <enum id="org.gnome.shell.extensions.show-desktop-button.panel-position">
+  <enum id="org.gnome.shell.extensions.show-desktop-applet.panel-position">
     <value value="0" nick="LEFT"/>
     <value value="1" nick="CENTER"/>
     <value value="2" nick="RIGHT"/>
   </enum>
   
-	<schema path="/org/gnome/shell/extensions/show-desktop-button/"
-	  id="org.gnome.shell.extensions.show-desktop-button">
+	<schema path="/org/gnome/shell/extensions/show-desktop-applet/"
+	  id="org.gnome.shell.extensions.show-desktop-applet">
 
 		<key name="panel-position"
-		  enum="org.gnome.shell.extensions.show-desktop-button.panel-position">
+		  enum="org.gnome.shell.extensions.show-desktop-applet.panel-position">
 			<default>'RIGHT'</default>
 			<summary>Position on panel.</summary>
 			<description>Sets the position of the extension on the panel.
