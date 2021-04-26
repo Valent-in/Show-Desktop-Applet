@@ -4,8 +4,6 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 const Tools = Me.imports.tools;
 const Settings = Tools.getSettings();
-const Gettext = imports.gettext.domain(Me.metadata['gettext-domain']);
-const _ = Gettext.gettext;
 
 function init () {
     ExtensionUtils.initTranslations();
