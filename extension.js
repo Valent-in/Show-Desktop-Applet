@@ -16,8 +16,8 @@ let storedWindows = [];
 
 function toggleDesktop() {
 
-	let metaWorkspace = global.workspace_manager.get_active_workspace();
-	let windows = metaWorkspace.list_windows();
+	let workspace = global.workspace_manager.get_active_workspace();
+	let windows = workspace.list_windows();
 
 	log("\n### " + ExtensionName + " debugging START ###");
 
@@ -36,7 +36,7 @@ function toggleDesktop() {
 		// If nothing were minimized (desktop is alredy shown)
 		// try to restore previously minimized
 		for (let i = 0; i < storedWindows.length; i++) {
-			if (storedWindows[i])
+			if (storedWindows[i] && storedWindows[i].located_on_workspace(workspace))
 				storedWindows[i].unminimize();
 		}
 		storedWindows = [];
