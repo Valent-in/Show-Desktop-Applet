@@ -14,7 +14,11 @@ function init () {
 function buildPrefsWidget () {
 	
 	let widget = new MyPrefsWidget();
-	widget.show_all(); // Workaround for older shell versions (pre 40)
+
+	// Workaround for older shell versions (pre 40)
+	if (widget.show_all)
+		widget.show_all();
+
 	return widget;
 }
 
@@ -42,12 +46,14 @@ const MyPrefsWidget = new GObject.Class({
 		    Settings.set_enum('panel-position', value);
 		});
 		
-		if (this.set_child)
+		if (this.set_child) {
 			this.set_child(builder.get_object('main_prefs'));
-		else if (this.add)
-			this.add(builder.get_object('main_prefs')); // Workaround for older shell versions (pre 40)
-		else
-			log('\n ### Can not open extension settings');
+		} else if (this.add) {
+			// Workaround for older shell versions (pre 40)
+			this.add(builder.get_object('main_prefs'));
+		} else {
+			log('\n ### Can not show extension settings');
+		}
 	}
 
 });
