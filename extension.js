@@ -105,9 +105,11 @@ function getPanelButton() {
 function addButton() {
 
 	let role = `${ExtensionName} Indicator`;
-	let positions = ['left', 'center', 'right'];
+	let index = Settings.get_enum('panel-position');
+	let positions = ['left', 'left', 'center', 'right', 'right'];
+	let modifiers = [0, 1, 1, 1, -1];
 
-	Main.panel.addToStatusArea(role, getPanelButton(), 1, positions[Settings.get_enum('panel-position')]);
+	Main.panel.addToStatusArea(role, getPanelButton(), modifiers[index], positions[index]);
 }
 
 function removeButton() {

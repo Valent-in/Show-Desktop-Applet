@@ -2,9 +2,11 @@
 <schemalist gettext-domain="show-desktop-applet">
   
   <enum id="org.gnome.shell.extensions.show-desktop-applet.panel-position">
-    <value value="0" nick="LEFT"/>
-    <value value="1" nick="CENTER"/>
-    <value value="2" nick="RIGHT"/>
+    <value value="0" nick="LEFT-END"/>
+    <value value="1" nick="LEFT"/>
+    <value value="2" nick="CENTER"/>
+    <value value="3" nick="RIGHT"/>
+    <value value="4" nick="RIGHT-END"/>
   </enum>
   
 	<schema path="/org/gnome/shell/extensions/show-desktop-applet/"
@@ -12,7 +14,7 @@
 
 		<key name="panel-position"
 		  enum="org.gnome.shell.extensions.show-desktop-applet.panel-position">
-			<default>'RIGHT'</default>
+			<default>'RIGHT-END'</default>
 			<summary>Position on panel.</summary>
 			<description>Sets the position of the extension on the panel.
 			  Possible values are: Left, Center, Right.</description>
