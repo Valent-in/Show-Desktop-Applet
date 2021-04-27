@@ -91,7 +91,7 @@ function getPanelButton() {
 	panelButton = new PanelMenu.Button(0.0, `${ExtensionName}`, false);
 
 	let icon = new St.Icon({
-		icon_name: 'user-home-symbolic',
+		icon_name: 'computer-symbolic',
 		style_class: 'system-status-icon',
 	});
 
@@ -107,7 +107,7 @@ function addButton() {
 	let role = `${ExtensionName} Indicator`;
 	let index = Settings.get_enum('panel-position');
 	let positions = ['left', 'left', 'center', 'right', 'right'];
-	let modifiers = [0, 1, 1, 1, -1];
+	let modifiers = [0, 1, 0, 1, -1];
 
 	Main.panel.addToStatusArea(role, getPanelButton(), modifiers[index], positions[index]);
 }

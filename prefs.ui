@@ -29,7 +29,7 @@
               <object class="GtkListBoxRow" id="listboxrow2">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
-                  <property name="hexpand">1</property>
+                <property name="hexpand">1</property>
                 <child>
                   <object class="GtkBox" id="combobox_box">
                     <property name="visible">True</property>

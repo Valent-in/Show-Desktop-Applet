@@ -22,8 +22,8 @@ function buildPrefsWidget () {
 
 const MyPrefsWidget = new GObject.Class({
 
-	Name : "show-desktop-button-prefs.Widget",
-	GTypeName : "show-desktop-button-prefs_Widget",
+	Name : 'show-desktop-applet-prefs.Widget',
+	GTypeName : 'show-desktop-applet-prefs_Widget',
 	Extends : Gtk.ScrolledWindow,
 	
 	_init : function (params) {
@@ -35,11 +35,11 @@ const MyPrefsWidget = new GObject.Class({
 		builder.add_from_file(Me.path + '/prefs.ui');
 		
 		let currentPosition = Settings.get_enum('panel-position');
-		let comboBox = builder.get_object("panelButtonPosition_combobox");
+		let comboBox = builder.get_object('panelButtonPosition_combobox');
 		
 		comboBox.set_active(currentPosition);
 		
-		comboBox.connect("changed", (w) => {
+		comboBox.connect('changed', (w) => {
 		    let value = w.get_active();
 		    Settings.set_enum('panel-position', value);
 		});
