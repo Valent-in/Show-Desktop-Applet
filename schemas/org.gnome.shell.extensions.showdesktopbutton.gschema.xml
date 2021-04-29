@@ -16,8 +16,13 @@
 		  enum="org.gnome.shell.extensions.show-desktop-applet.panel-position">
 			<default>'RIGHT-END'</default>
 			<summary>Position on panel.</summary>
-			<description>Sets the position of the extension on the panel.
-			  Possible values are: Left, Center, Right.</description>
+			<description>Sets the position of the extension on the panel.</description>
+		</key>
+
+		<key type="as" name="hotkey">
+			<default><![CDATA[['<Super>d']]]></default>
+			<summary>The hotkey</summary>
+			<description>Hotkey for show-desktop</description>
 		</key>
 
 	</schema>

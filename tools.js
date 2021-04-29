@@ -32,3 +32,6 @@ function getSettings() {
 	return new Gio.Settings({ settings_schema : schemaObj });
 }
 
+function getExternalSettings(schemaStr) {
+	return new Gio.Settings({ schema : schemaStr });
+}

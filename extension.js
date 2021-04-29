@@ -7,6 +7,7 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 const Tools = Me.imports.tools;
 const Settings = Tools.getSettings();
+const extSettings = Tools.getExternalSettings('org.gnome.desktop.wm.keybindings');
 
 const ExtensionName = Me.metadata.name;
 
@@ -127,9 +128,18 @@ function init() {
 function enable() {
 	storedWindows = [];
 	addButton();
+
+	let mode = Shell.ActionMode.NORMAL | Shell.ActionMode.OVERVIEW | Shell.ActionMode.POPUP;
+	let flag = Meta.KeyBindingFlags.IGNORE_AUTOREPEAT;
+
+	extSettings.set_strv('show-desktop', []);
+	Main.wm.addKeybinding('hotkey', Settings, flag, mode, toggleDesktop);
 }
 
 function disable() {
+	Main.wm.removeKeybinding('hotkey');
+	extSettings.reset('show-desktop');
+
 	storedWindows = null;
 	removeButton();
 }
