@@ -35,13 +35,22 @@ const MyPrefsWidget = new GObject.Class({
 		builder.add_from_file(Me.path + '/prefs.ui');
 		
 		let currentPosition = Settings.get_enum('panel-position');
+		let isHotkeyEnabled = Settings.get_boolean('enable-hotkey');
+		
 		let comboBox = builder.get_object('panelButtonPosition_combobox');
+		let enableSwitch = builder.get_object('useHotkey_switch');
 		
 		comboBox.set_active(currentPosition);
+		enableSwitch.set_active(isHotkeyEnabled);
 		
 		comboBox.connect('changed', (w) => {
 		    let value = w.get_active();
 		    Settings.set_enum('panel-position', value);
+		});
+		
+		enableSwitch.connect('state-set', (w) => {
+		    let value = w.get_active();
+		    Settings.set_boolean('enable-hotkey', value);
 		});
 		
 		if (this.set_child) {

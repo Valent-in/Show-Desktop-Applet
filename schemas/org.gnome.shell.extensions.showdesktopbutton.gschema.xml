@@ -19,6 +19,12 @@
 			<description>Sets the position of the extension on the panel.</description>
 		</key>
 
+		<key type="b" name="enable-hotkey">
+			<default>false</default>
+			<summary>Enable hotkey</summary>
+			<description>Enable hotkey for show-desktop</description>
+		</key>
+
 		<key type="as" name="hotkey">
 			<default><![CDATA[['<Super>d']]]></default>
 			<summary>The hotkey</summary>
