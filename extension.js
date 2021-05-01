@@ -73,6 +73,7 @@ function shouldBeIgnored(window) {
 	return false;
 }
 
+
 function getPanelButton() {
 
 	panelButton = new PanelMenu.Button(0.0, `${ExtensionName}`, false);
@@ -89,6 +90,7 @@ function getPanelButton() {
 	return panelButton;
 }
 
+
 function addButton() {
 
 	let role = `${ExtensionName} Indicator`;
@@ -99,10 +101,12 @@ function addButton() {
 	Main.panel.addToStatusArea(role, getPanelButton(), modifiers[index], positions[index]);
 }
 
+
 function removeButton() {
 	panelButton.destroy();
 	panelButton = null;
 }
+
 
 function onEnable() {
 	addButton();
@@ -117,6 +121,7 @@ function onEnable() {
 	}
 }
 
+
 function onDisable() {
 	if (isHotkeySet) {
 		Main.wm.removeKeybinding('show-desktop-hotkey');
@@ -125,6 +130,7 @@ function onDisable() {
 	}
 	removeButton();
 }
+
 
 function init() {
 	Settings.connect('changed', (s) => {
@@ -135,11 +141,13 @@ function init() {
 	});
 }
 
+
 function enable() {
 	isEnabled = true;
 	storedWindows = [];
 	onEnable();
 }
+
 
 function disable() {
 	onDisable();
