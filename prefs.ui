@@ -69,44 +69,52 @@
                 <property name="can-focus">True</property>
                 <property name="hexpand">1</property>
                 <child>
-                  <object class="GtkGrid" id="switch_grid">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin_left">16</property>
-                    <property name="margin_right">16</property>
+                    <property name="margin_start">16</property>
+                    <property name="margin_end">16</property>
                     <property name="margin_top">16</property>
                     <property name="margin_bottom">16</property>
-                    <property name="column_spacing">24</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkLabel" id="hotkeyEnable">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="tooltip-text" translatable="yes">Enable &lt;Super&gt;d hotkey</property>
-                        <property name="label" translatable="yes">Enable hotkey</property>
-                        <property name="xalign">0</property>
-                        <property name="hexpand">1</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">Enable hotkey</property>
+                            <property name="tooltip-text" translatable="yes">Enable &lt;Super&gt;d hotkey</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkSwitch" id="useHotkey_switch">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSwitch" id="useHotkey_switch">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">False</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes">WARNING: This will reset system hotkey
+for show-desktop action</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="hotkeyWarning">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">WARNING: This will reset system hotkey for show-desktop action</property>
-                        <property name="xalign">0</property>
-                        <property name="hexpand">1</property>
-                        <property name="wrap">True</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
-                      </packing>
                     </child>
                   </object>
                 </child>
