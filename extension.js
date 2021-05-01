@@ -37,10 +37,19 @@ function toggleDesktop() {
 	} else {
 		// If nothing were minimized (desktop is alredy shown)
 		// try to restore previously minimized
-		for (let i = 0; i < storedWindows.length; i++) {
-			if (storedWindows[i] && storedWindows[i].located_on_workspace(workspace))
-				storedWindows[i].unminimize();
+		let topWindow;
+		let stackedWindows = global.display.sort_windows_by_stacking(storedWindows);
+
+		for (let i = 0; i < stackedWindows.length; i++) {
+			if (stackedWindows[i] && stackedWindows[i].located_on_workspace(workspace)) {
+				stackedWindows[i].unminimize();
+				topWindow = stackedWindows[i];
+			}
 		}
+
+		if (topWindow)
+			topWindow.activate(global.get_current_time());
+
 		storedWindows = [];
 	}
 
