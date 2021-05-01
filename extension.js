@@ -14,6 +14,7 @@ const ExtensionName = Me.metadata.name;
 let panelButton;
 let storedWindows = [];
 let isHotkeySet = false;
+let isEnabled = false;
 
 
 function toggleDesktop() {
@@ -91,7 +92,7 @@ function getPanelButton() {
 function addButton() {
 
 	let role = `${ExtensionName} Indicator`;
-	let index = Settings.get_enum('panel-position');
+	let index = Settings.get_enum('button-position');
 	let positions = ['left', 'left', 'center', 'right', 'right'];
 	let modifiers = [0, 1, 0, 1, -1];
 
@@ -111,14 +112,14 @@ function onEnable() {
 
 	if (Settings.get_boolean('enable-hotkey')) {
 		extSettings.set_strv('show-desktop', []);
-		Main.wm.addKeybinding('hotkey', Settings, flag, mode, toggleDesktop);
+		Main.wm.addKeybinding('show-desktop-hotkey', Settings, flag, mode, toggleDesktop);
 		isHotkeySet = true;
 	}
 }
 
 function onDisable() {
 	if (isHotkeySet) {
-		Main.wm.removeKeybinding('hotkey');
+		Main.wm.removeKeybinding('show-desktop-hotkey');
 		extSettings.reset('show-desktop');
 		isHotkeySet = false;
 	}
@@ -127,12 +128,15 @@ function onDisable() {
 
 function init() {
 	Settings.connect('changed', (s) => {
-		onDisable();
-		onEnable();
+		if (isEnabled) {
+			onDisable();
+			onEnable();
+		}
 	});
 }
 
 function enable() {
+	isEnabled = true;
 	storedWindows = [];
 	onEnable();
 }
@@ -140,4 +144,5 @@ function enable() {
 function disable() {
 	onDisable();
 	storedWindows = null;
+	isEnabled = false;
 }

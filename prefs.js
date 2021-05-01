@@ -34,7 +34,7 @@ const MyPrefsWidget = new GObject.Class({
 		builder.set_translation_domain(Me.metadata['gettext-domain']);
 		builder.add_from_file(Me.path + '/prefs.ui');
 		
-		let currentPosition = Settings.get_enum('panel-position');
+		let currentPosition = Settings.get_enum('button-position');
 		let isHotkeyEnabled = Settings.get_boolean('enable-hotkey');
 		
 		let comboBox = builder.get_object('panelButtonPosition_combobox');
@@ -45,7 +45,7 @@ const MyPrefsWidget = new GObject.Class({
 		
 		comboBox.connect('changed', (w) => {
 		    let value = w.get_active();
-		    Settings.set_enum('panel-position', value);
+		    Settings.set_enum('button-position', value);
 		});
 		
 		enableSwitch.connect('state-set', (w) => {
