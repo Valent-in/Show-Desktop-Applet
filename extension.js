@@ -1,4 +1,4 @@
-const { St, Shell, Atk } = imports.gi;
+const { St, Shell, Atk, Clutter } = imports.gi;
 const Main = imports.ui.main;
 const Util = imports.misc.util;
 const Meta = imports.gi.Meta;
@@ -86,6 +86,14 @@ function getPanelButton() {
 	panelButton.add_child(icon);
 
 	panelButton.connect('button-press-event', toggleDesktop);
+
+	panelButton.connect_after('key-release-event', (actor, event) => {
+		let symbol = event.get_key_symbol();
+		if (symbol == Clutter.KEY_Return || symbol == Clutter.KEY_space) {
+			toggleDesktop();
+		}
+		return Clutter.EVENT_PROPAGATE;
+	});
 
 	return panelButton;
 }
