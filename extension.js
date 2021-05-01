@@ -21,12 +21,10 @@ function toggleDesktop() {
 	let workspace = global.workspace_manager.get_active_workspace();
 	let windows = workspace.list_windows();
 
-	log("\n### " + ExtensionName + " debugging START ###");
-
 	let tmpStoredWindows = [];
 	// Try to minimize all windows
 	for (let i = 0; i < windows.length; ++i) {
-		if (!windowShouldBeIgnored(windows[i])) {
+		if (!shouldBeIgnored(windows[i])) {
 			windows[i].minimize();
 			tmpStoredWindows.push(windows[i])
 		}
@@ -59,37 +57,14 @@ function toggleDesktop() {
 }
 
 
-function windowShouldBeIgnored(window) {
+function shouldBeIgnored(window) {
 	if (!window)
 		return true;
 
-	let wm_class = window.wm_class.toLowerCase();
-	if (window.wm_class == null) {
-		wm_class = 'null';
-	}
-
-	let window_type = window.window_type;
-	if (window.window_type == null) {
-		window_type = 'null';
-	}
-
-	let title = window.title;
-	if (window.title == null) {
-		title = 'null';
-	}
-
-	log("i: " +
-		"\ttitle: " + title +
-		"\twindow_type: " + window_type +
-		"\twm_class: " + wm_class);
-
 	if (window.minimized ||
-		window_type == Meta.WindowType.DESKTOP ||
-		window_type == Meta.WindowType.DOCK ||
-		title.startsWith('DING') ||
-		wm_class.endsWith('notejot') ||
-		wm_class == 'conky' ||
-		(title.startsWith('@!') && title.endsWith('BDH'))) {
+		window.skip_taskbar ||
+		window.window_type == Meta.WindowType.DESKTOP ||
+		window.window_type == Meta.WindowType.DOCK) {
 
 		return true;
 	}
