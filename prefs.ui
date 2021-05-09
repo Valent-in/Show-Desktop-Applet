@@ -40,8 +40,8 @@
                     <child>
                       <object class="GtkLabel" id="panelButtonPosition">
                         <property name="visible">True</property>
-                        <property name="tooltip-text" translatable="yes">Set the position of the indicator on the top panel</property>
-                        <property name="label" translatable="yes">Indicator position on panel</property>
+                        <property name="tooltip-text" translatable="yes">Set the position of the button on the top panel</property>
+                        <property name="label" translatable="yes">Button position on panel</property>
                         <property name="xalign">0</property>
                         <property name="hexpand">1</property>
                       </object>
@@ -107,8 +107,8 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">WARNING: This will reset system hotkey
-for show-desktop action</property>
+                            <property name="label" translatable="yes">WARNING: This will reset system keybinding
+for "Hide all normal windows"</property>
                             <style>
                               <class name="dim-label"/>
                             </style>
