@@ -75,7 +75,6 @@ function shouldBeIgnored(window) {
 
 
 function getPanelButton() {
-
 	panelButton = new PanelMenu.Button(0.0, `${ExtensionName}`, false);
 
 	let icon = new St.Icon({
@@ -100,13 +99,16 @@ function getPanelButton() {
 
 
 function addButton() {
-
 	let role = `${ExtensionName} Indicator`;
 	let index = settings.get_enum('button-position');
 	let positions = ['left', 'left', 'center', 'right', 'right'];
 	let modifiers = [0, 1, 0, 1, -1];
 
-	Main.panel.addToStatusArea(role, getPanelButton(), modifiers[index], positions[index]);
+	getPanelButton();
+	if (index == 0 || index == 4)
+		panelButton.style = '-natural-hpadding:4px;-minimum-hpadding:4px;'
+
+	Main.panel.addToStatusArea(role, panelButton, modifiers[index], positions[index]);
 }
 
 
