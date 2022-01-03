@@ -3,7 +3,6 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 
 function getSettings() {
-
 	let GioSSS = Gio.SettingsSchemaSource;
 
 	let schemaSource = GioSSS.new_from_directory(

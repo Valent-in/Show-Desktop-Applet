@@ -18,7 +18,6 @@ let settingsSignal;
 
 
 function toggleDesktop() {
-
 	let workspace = global.workspace_manager.get_active_workspace();
 	let windows = workspace.list_windows();
 
@@ -74,7 +73,7 @@ function shouldBeIgnored(window) {
 }
 
 
-function getPanelButton() {
+function createPanelButton() {
 	panelButton = new PanelMenu.Button(0.0, `${ExtensionName}`, false);
 
 	let icon = new St.Icon({
@@ -93,8 +92,6 @@ function getPanelButton() {
 		}
 		return Clutter.EVENT_PROPAGATE;
 	});
-
-	return panelButton;
 }
 
 
@@ -104,7 +101,7 @@ function addButton() {
 	let positions = ['left', 'left', 'center', 'right', 'right'];
 	let modifiers = [0, 1, 0, 1, -1];
 
-	getPanelButton();
+	createPanelButton();
 	if (index == 0 || index == 4)
 		panelButton.style = '-natural-hpadding:4px;-minimum-hpadding:4px;'
 
@@ -113,7 +110,9 @@ function addButton() {
 
 
 function removeButton() {
-	panelButton.destroy();
+	if (panelButton)
+		panelButton.destroy();
+
 	panelButton = null;
 }
 

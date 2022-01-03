@@ -12,7 +12,6 @@ function init() {
 
 
 function buildPrefsWidget() {
-
 	let widget = new MyPrefsWidget();
 
 	// Workaround for older shell versions (pre 40)
@@ -24,7 +23,6 @@ function buildPrefsWidget() {
 
 
 const MyPrefsWidget = new GObject.Class({
-
 	Name: 'show-desktop-applet-prefs.Widget',
 	GTypeName: 'show-desktop-applet-prefs_Widget',
 	Extends: Gtk.ScrolledWindow,
