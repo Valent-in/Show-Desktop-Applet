@@ -1,20 +1,17 @@
-const { St, Shell, Atk, Clutter } = imports.gi;
+const { St, Shell, Atk, Clutter, Gio } = imports.gi;
 const Main = imports.ui.main;
 const Util = imports.misc.util;
 const Meta = imports.gi.Meta;
 const PanelMenu = imports.ui.panelMenu;
-const Me = imports.misc.extensionUtils.getCurrentExtension();
 
-const Tools = Me.imports.tools;
-const settings = Tools.getSettings();
-const extSettings = Tools.getExternalSettings('org.gnome.desktop.wm.keybindings');
+const ExtensionUtils = imports.misc.extensionUtils;
+const ExtensionName = ExtensionUtils.getCurrentExtension().metadata.name;
 
-const ExtensionName = Me.metadata.name;
-
+let settings, extSettings;
+let settingsSignal;
 let panelButton;
 let storedWindows = [];
 let isHotkeySet = false;
-let settingsSignal;
 
 
 function toggleDesktop() {
@@ -147,6 +144,8 @@ function init() {
 
 
 function enable() {
+	settings = ExtensionUtils.getSettings();
+	extSettings = new Gio.Settings({ schema: 'org.gnome.desktop.wm.keybindings' });
 	storedWindows = [];
 	onEnable();
 
@@ -159,7 +158,9 @@ function enable() {
 
 function disable() {
 	settings.disconnect(settingsSignal);
-
 	onDisable();
+
 	storedWindows = null;
+	settings = null;
+	extSettings = null;
 }

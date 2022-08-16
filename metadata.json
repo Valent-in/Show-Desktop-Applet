@@ -11,9 +11,10 @@
     "3.36",
     "3.38",
     "40",
-    "41"
+    "41",
+    "42"
   ],
   "url": "https://github.com/Valent-in/Show-Desktop-Applet",
   "uuid": "show-desktop-applet@valent-in",
-  "version": 3
+  "version": 4
 }

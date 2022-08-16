@@ -2,8 +2,7 @@ const { GObject, Gtk } = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 
-const Tools = Me.imports.tools;
-const Settings = Tools.getSettings();
+const Settings = ExtensionUtils.getSettings();
 
 
 function init() {
