@@ -2,8 +2,6 @@ const { GObject, Gtk } = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 
-const Settings = ExtensionUtils.getSettings();
-
 
 function init() {
 	ExtensionUtils.initTranslations();
@@ -27,7 +25,7 @@ const MyPrefsWidget = new GObject.Class({
 	Extends: Gtk.ScrolledWindow,
 
 	_init: function (params) {
-
+		const Settings = ExtensionUtils.getSettings();
 		this.parent(params);
 
 		let builder = new Gtk.Builder();
