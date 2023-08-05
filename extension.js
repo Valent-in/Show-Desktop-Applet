@@ -74,7 +74,7 @@ function createPanelButton() {
 	panelButton = new PanelMenu.Button(0.0, `${ExtensionName}`, false);
 
 	let icon = new St.Icon({
-		icon_name: 'computer-symbolic',
+		icon_name: 'goa-account-symbolic',
 		style_class: 'system-status-icon',
 	});
 
@@ -100,7 +100,7 @@ function addButton() {
 
 	createPanelButton();
 	if (index == 0 || index == 4)
-		panelButton.style = '-natural-hpadding:4px;-minimum-hpadding:4px;'
+		panelButton.style = '-natural-hpadding:-12px;-minimum-hpadding:-12px;border: 1px solid rgba(255,255,255,0.5);border-right: 0;border-top: 0;border-bottom: 0;border-radius: 0px;margin-left:2.5px;'
 
 	Main.panel.addToStatusArea(role, panelButton, modifiers[index], positions[index]);
 }
