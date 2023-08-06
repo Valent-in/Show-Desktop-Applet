@@ -4,7 +4,7 @@
   "extension-id": "show-desktop-applet",
   "gettext-domain": "show-desktop-applet",
   "localedir": "/usr/share/locale",
-  "name": "Show Desktop Icon",
+  "name": "Show Desktop Applet",
   "settings-schema": "org.gnome.shell.extensions.show-desktop-applet",
   "shell-version": [
     "3.34",
