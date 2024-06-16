@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.1 -->
 <interface>
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkAdjustment" id="adjustment1">
@@ -8,9 +7,8 @@
     <property name="step-increment">1</property>
     <property name="page-increment">2</property>
   </object>
-  <object class="GtkBox" id="main_prefs">
+  <object class="AdwPreferencesPage" id="main_prefs">
     <property name="visible">True</property>
-    <property name="orientation">vertical</property>
     <property name="margin_start">32</property>
     <property name="margin_end">32</property>
     <property name="margin_top">32</property>

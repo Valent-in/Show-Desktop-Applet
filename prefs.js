@@ -9,13 +9,7 @@ function init() {
 
 
 function buildPrefsWidget() {
-	let widget = new MyPrefsWidget();
-
-	// Workaround for older shell versions (pre 40)
-	if (widget.show_all)
-		widget.show_all();
-
-	return widget;
+	return new MyPrefsWidget();
 }
 
 
@@ -51,14 +45,7 @@ const MyPrefsWidget = new GObject.Class({
 			Settings.set_boolean('enable-hotkey', value);
 		});
 
-		if (this.set_child) {
-			this.set_child(builder.get_object('main_prefs'));
-		} else if (this.add) {
-			// Workaround for older shell versions (pre 40)
-			this.add(builder.get_object('main_prefs'));
-		} else {
-			log('\n ### Can not show extension settings');
-		}
+		this.set_child(builder.get_object('main_prefs'));
 	}
 
 });
