@@ -1,12 +1,12 @@
-const { St, Shell, Atk, Clutter, Gio } = imports.gi;
-const Main = imports.ui.main;
-const Util = imports.misc.util;
-const Meta = imports.gi.Meta;
-const PanelMenu = imports.ui.panelMenu;
+import St from 'gi://St';
+import Meta from 'gi://Meta';
+import Gio from 'gi://Gio';
+import Shell from 'gi://Shell';
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
+import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const ExtensionName = ExtensionUtils.getCurrentExtension().metadata.name;
-
+let ExtensionName;
 let settings, extSettings;
 let settingsSignal;
 let panelButton;
@@ -138,29 +138,26 @@ function onDisable() {
 }
 
 
-function init() {
-
-}
-
-
-function enable() {
-	settings = ExtensionUtils.getSettings();
-	extSettings = new Gio.Settings({ schema: 'org.gnome.desktop.wm.keybindings' });
-	storedWindows = [];
-	onEnable();
-
-	settingsSignal = settings.connect('changed', (s) => {
-		onDisable();
+export default class extends Extension {
+	enable() {
+		ExtensionName = this.metadata.name;
+		settings = this.getSettings();
+		extSettings = new Gio.Settings({ schema: 'org.gnome.desktop.wm.keybindings' });
+		storedWindows = [];
 		onEnable();
-	});
-}
 
+		settingsSignal = settings.connect('changed', (s) => {
+			onDisable();
+			onEnable();
+		});
+	}
 
-function disable() {
-	settings.disconnect(settingsSignal);
-	onDisable();
+	disable() {
+		settings.disconnect(settingsSignal);
+		onDisable();
 
-	storedWindows = null;
-	settings = null;
-	extSettings = null;
+		storedWindows = null;
+		settings = null;
+		extSettings = null;
+	}
 }

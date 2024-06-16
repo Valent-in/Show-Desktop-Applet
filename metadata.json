@@ -6,11 +6,10 @@
   "name": "Show Desktop Applet",
   "settings-schema": "org.gnome.shell.extensions.show-desktop-applet",
   "shell-version": [
-    "42",
-    "43",
-    "44"
+    "45",
+    "46"
   ],
   "url": "https://github.com/Valent-in/Show-Desktop-Applet",
   "uuid": "show-desktop-applet@valent-in",
-  "version": 6
+  "version": 7
 }

@@ -1,30 +1,15 @@
-const { GObject, Gtk } = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = imports.misc.extensionUtils.getCurrentExtension();
+import Gtk from 'gi://Gtk';
+import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 
-function init() {
-	ExtensionUtils.initTranslations();
-}
+export default class extends ExtensionPreferences {
 
-
-function buildPrefsWidget() {
-	return new MyPrefsWidget();
-}
-
-
-const MyPrefsWidget = new GObject.Class({
-	Name: 'show-desktop-applet-prefs.Widget',
-	GTypeName: 'show-desktop-applet-prefs_Widget',
-	Extends: Gtk.ScrolledWindow,
-
-	_init: function (params) {
-		const Settings = ExtensionUtils.getSettings();
-		this.parent(params);
+	fillPreferencesWindow(window) {
+		const Settings = this.getSettings();
 
 		let builder = new Gtk.Builder();
-		builder.set_translation_domain(Me.metadata['gettext-domain']);
-		builder.add_from_file(Me.path + '/prefs.ui');
+		builder.set_translation_domain(this.metadata['gettext-domain']);
+		builder.add_from_file(this.dir.get_child('prefs.ui').get_path());
 
 		let currentPosition = Settings.get_enum('button-position');
 		let isHotkeyEnabled = Settings.get_boolean('enable-hotkey');
@@ -45,7 +30,7 @@ const MyPrefsWidget = new GObject.Class({
 			Settings.set_boolean('enable-hotkey', value);
 		});
 
-		this.set_child(builder.get_object('main_prefs'));
+		window.add(builder.get_object('main_prefs'));
 	}
 
-});
+}
